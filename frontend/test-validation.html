@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Validation Test</title>
+</head>
+<body>
+    <h1>File Validation Test</h1>
+    <input type="file" id="fileInput" />
+    <div id="result"></div>
+
+    <script>
+        const SUPPORTED_FILE_TYPES = {
+            'application/pdf': ['.pdf'],
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
+            'application/vnd.openxmlformats-officedocument.presentationml.presentation': ['.pptx'],
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'],
+            'text/html': ['.html'],
+            'image/png': ['.png'],
+            'image/jpeg': ['.jpg', '.jpeg'],
+            'image/tiff': ['.tiff', '.tif'],
+            'audio/wav': ['.wav'],
+            'audio/mpeg': ['.mp3'],
+        };
+
+        function validateFile(file) {
+            console.log('File name:', file.name);
+            console.log('File type:', file.type);
+            console.log('File size:', file.size);
+            
+            const fileExtension = '.' + file.name.split('.').pop()?.toLowerCase();
+            console.log('Detected extension:', fileExtension);
+            
+            const supportedExtensions = Object.values(SUPPORTED_FILE_TYPES).flat();
+            console.log('Supported extensions:', supportedExtensions);
+            
+            if (!supportedExtensions.includes(fileExtension)) {
+                return `File type "${fileExtension}" is not supported. Supported types: ${supportedExtensions.join(', ')}`;
+            }
+            
+            return 'File is valid!';
+        }
+
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const result = validateFile(file);
+                document.getElementById('result').innerHTML = `<p>${result}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Test - Docling App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @layer components {
+            .btn {
+                @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:opacity-50 disabled:pointer-events-none;
+            }
+            
+            .btn-primary {
+                @apply btn bg-blue-600 text-white hover:bg-blue-700 h-10 py-2 px-4;
+            }
+            
+            .btn-secondary {
+                @apply btn bg-gray-100 text-gray-900 hover:bg-gray-200 h-10 py-2 px-4;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-8">
+    <div class="max-w-md mx-auto space-y-4">
+        <h1 class="text-2xl font-bold text-gray-900">CSS Test - Button Styles</h1>
+        
+        <div class="space-y-2">
+            <button class="btn-primary">Primary Button</button>
+            <button class="btn-secondary">Secondary Button</button>
+            <button class="btn bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 h-10 py-2 px-4">Outline Button</button>
+        </div>
+        
+        <p class="text-sm text-gray-600">
+            Test the focus states by pressing Tab to navigate between buttons.
+            The ring focus should appear correctly without CSS errors.
+        </p>
+    </div>
+</body>
+</html>
